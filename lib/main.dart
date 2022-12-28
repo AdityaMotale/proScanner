@@ -3,19 +3,19 @@ import 'package:get/get.dart';
 import 'package:qr_scanner/views/splash.view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProScanner());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ProScanner extends StatelessWidget {
+  const ProScanner({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'ProScanner',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
       home: const SplashView(),
     );
