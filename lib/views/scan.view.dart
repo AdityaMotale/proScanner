@@ -1,10 +1,9 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:qr_scanner/controller.dart';
+import 'package:qr_scanner/controllers/scan.ctrl.dart';
 
 class ScanView extends StatefulWidget {
   const ScanView({Key? key}) : super(key: key);
@@ -16,7 +15,7 @@ class ScanView extends StatefulWidget {
 class _ScanViewState extends State<ScanView> {
   QRViewController? controller;
 
-  final MainController ctrl = Get.find<MainController>();
+  final ScanController ctrl = Get.find<ScanController>();
 
   @override
   void reassemble() {
@@ -48,11 +47,9 @@ class _ScanViewState extends State<ScanView> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      ctrl.qrList.add(scanData);
-
-      log("------------------------------------------------");
-      log(scanData.code.toString());
-      log("------------------------------------------------");
+      if (scanData.code != null) {
+        ctrl.addItemToCart(scanData.code!);
+      }
     });
   }
 }
