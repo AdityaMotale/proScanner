@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qr_scanner/controllers/scan.ctrl.dart';
-import 'package:qr_scanner/views/scan.view.dart';
-import 'package:qr_scanner/widgets/itemCard.widget.dart';
+import '../controllers/scan.ctrl.dart';
+import 'check_out.view.dart';
+import 'info.view.dart';
+import 'scan.view.dart';
+import '../widgets/itemCard.widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -20,6 +22,14 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         title: const Text("QR Scanner"),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(() => const InfoView());
+            },
+            icon: const Icon(Icons.info_outline_rounded),
+          )
+        ],
       ),
       body: Obx(() {
         if (ctrl.cartItems.isEmpty) {
@@ -71,7 +81,20 @@ class _HomeViewState extends State<HomeView> {
           ),
           FloatingActionButton(
             heroTag: "cart",
-            onPressed: () {},
+            onPressed: () {
+              if (ctrl.cartItems.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      "Your cart is empty! Please add items in order to checkout",
+                    ),
+                  ),
+                );
+                return;
+              }
+
+              Get.to(() => const CheckOutView());
+            },
             child: const Icon(Icons.shopping_bag),
           ),
           const SizedBox(
@@ -82,13 +105,3 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-
-/**
-  ItemCardWidget(
-              title: ,
-              imgSrc:
-                  ,
-              quantity: "500 g",
-              price: 340,
-            ),
- */

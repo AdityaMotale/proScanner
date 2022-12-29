@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:qr_scanner/models/cartItem.model.dart';
+import '../models/cartItem.model.dart';
 
 class ScanController extends GetxController {
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
@@ -39,5 +39,14 @@ class ScanController extends GetxController {
     } catch (e) {
       log(e.toString());
     }
+  }
+
+  int getTotal() {
+    int total = 0;
+
+    for (var element in cartItems) {
+      total += element.price;
+    }
+    return total;
   }
 }

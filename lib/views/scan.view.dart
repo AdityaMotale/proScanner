@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:qr_scanner/controllers/scan.ctrl.dart';
+import '../controllers/scan.ctrl.dart';
 
 class ScanView extends StatefulWidget {
   const ScanView({Key? key}) : super(key: key);

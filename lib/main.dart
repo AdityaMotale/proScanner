@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qr_scanner/views/splash.view.dart';
+import 'views/splash.view.dart';
 
 void main() {
   runApp(const ProScanner());
